@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>form</title>
+    </head>
+
+    <body>
+        <form action="">
+            <input name="text" type="text"> Displays a single-line text input field
+            <br>
+            <input name="text1" type="text"> Displays a single-line text input field
+            <br>
+            <input name="text2" type="text"> Displays a single-line text input field
+            <br>
+            <input name="radio" type="radio" value="0"> Displays a radio button (for selecting one of many choices)
+            <input name="radio" type="radio" value="1" checked> Displays a radio button (for selecting one of many
+            choices)
+            <input name="radio" type="radio" value="2"> Displays a radio button (for selecting one of many choices)
+            <br>
+            <input name="checkbox[]" type="checkbox" value="0"> Displays a checkbox (for selecting zero or more of many
+            choices)
+            <input name="checkbox[]" type="checkbox" value="1"> Displays a checkbox (for selecting zero or more of many
+            choices)
+            <input name="checkbox[]" type="checkbox" value="2"> Displays a checkbox (for selecting zero or more of many
+            choices)
+            <br>
+            <select name="select" id="">
+                <option value="0" selected>First</option>
+                <option value="1">2th</option>
+                <option value="2">3rd</option>
+            </select>
+            <br>
+            <textarea name="textares" id="" cols="30" rows="10"></textarea>
+            <br>
+            <input type="submit" value="SUBMIT"> Displays a submit button (for submitting the form)
+            <br>
+            <input type="button" value="BUTTON"> Displays a clickable button
+            <br>
+            <input type="reset" value="RESET">
+            <br>
+        </form>
+    </body>
+    <script src="parseForm.js"></script>
+
+    <script>
+        console.log(parseForm(document.querySelector('form')));
+    </script>
+
+</html>

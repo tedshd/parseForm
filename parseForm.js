@@ -1,0 +1,51 @@
+
+function parseForm (formDom) {
+    var inputType = ['button', 'checkbox', 'color', 'date', 'datetime-local', 'email', 'file', 'hidden', 'image', 'month', 'number', 'password', 'radio', 'range', 'reset', 'search', 'submit', 'tel', 'text', 'time', 'url', 'week'];
+    var tmpObj = {},
+        obj = {},
+        el = formDom.elements;
+    for (var i = 0; i < el.length; i++) {
+        if (!el[i].name) {
+            continue;
+        }
+        if (tmpObj[el[i].name] == undefined) {
+            tmpObj[el[i].name] = [];
+        }
+        tmpObj[el[i].name].push(el[i]);
+    }
+    for (var n in tmpObj) {
+        if (tmpObj[n].length > 1) {
+            for (var m = 0; m < tmpObj[n].length; m++) {
+                if (tmpObj[n][m].nodeName == 'INPUT') {
+                    switch (tmpObj[n][m].type) {
+                        case 'checkbox':
+                            if (!obj[n]) {
+                                obj[n] = [];
+                            }
+                            if (tmpObj[n][m].checked == true) {
+                                obj[n].push(tmpObj[n][m].value);
+                            }
+                            break;
+                        case 'radio':
+                            if (tmpObj[n][m].checked == true) {
+                                obj[n] = tmpObj[n][m].value;
+                            }
+                            break;
+                        default:
+                            console.error('parseForm ERROR: input name "' + n + '" duplicate');
+                            return;
+                    }
+                }
+            }
+        } else {
+            var item = tmpObj[n][0];
+            if (item.nodeName == 'INPUT' || item.nodeName == 'TEXTAREA') {
+                obj[n] = item.value;
+            }
+            if ((item.nodeName == 'SELECT')) {
+                obj[n] = item.options[item.selectedIndex].value;
+            }
+        }
+    }
+    return obj;
+}
