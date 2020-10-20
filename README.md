@@ -4,7 +4,9 @@ JavaScript parse form input or selected or checked data.
 
 ## Feature
 
-parse data in form as JSON format.
+Parse data witch want to submit in form.
+
+To JSON format.
 
 ## Todo
 
