@@ -1,5 +1,4 @@
-
-function parseForm (formDom) {
+function parseForm(formDom) {
     var tmpObj = {},
         obj = {},
         el = formDom.elements;
@@ -38,10 +37,31 @@ function parseForm (formDom) {
             }
         } else {
             var item = tmpObj[n][0];
-            if (item.nodeName == 'INPUT' || item.nodeName == 'TEXTAREA') {
+            if (item.nodeName == 'INPUT') {
+                switch (item.type) {
+                    case 'checkbox':
+                        if (item.checked === true) {
+                            obj[n] = item.value;
+                        } else {
+                            obj[n] = '';
+                        }
+                        break;
+                    case 'radio':
+                        if (item.checked === true) {
+                            obj[n] = item.value;
+                        } else {
+                            obj[n] = '';
+                        }
+                        break;
+                    default:
+                        obj[n] = item.value;
+                        break;
+                }
+            }
+            if (item.nodeName == 'TEXTAREA') {
                 obj[n] = item.value;
             }
-            if ((item.nodeName == 'SELECT')) {
+            if (item.nodeName == 'SELECT') {
                 obj[n] = item.options[item.selectedIndex].value;
             }
         }
